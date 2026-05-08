@@ -25,24 +25,31 @@ e. Open your terminal (Command Prompt on Windows).
 f. Run "node -v", you should see v##.##.# depending on your version.
 g. Run "npm -v", you should see v##.##.# depending on your version.
 
-### Running the Tests
+### RUNNING THE TESTS:
 
-#### Installation
+#### The main method for running these tests is using the given executable file depending on your operating system:
 
-```bash
-cd frontend # Into this folder
-npm install # To install necessary modules
-```
+##### WINDOWS:
 
-#### Run Jest
+1. Go to the "frontend" folder inside the "unitTests" folder and run the file `start` or `start.bat` to start the tests, the results will be shown in the termial.
 
-```bash
-cd frontend # Into this folder
-npm test # To run all unit tests
-```
+##### MAC/LINUX:
+
+2. Go to the "frontend" folder inside the "unitTests" folder and run the file `start.command` to start the tests, the results will be shown in the termial.
+
+##### RESULTS:
 
 - All test results will be displayed directly in the terminal.
 - A summary of passed/failed suites and individual tests is shown at the end.
+
+#### ALTERNATIVELY: If these files do not work, it can be done the manual way:
+
+1. Open a new terminal.
+2. Navigate to the "frontend" folder inside the "unitTests" folder in your terminal using the `cd` command.
+3. Run `npm install`. You might see some warnings, but it should not be a problem as long as the installation finishes.
+4. Run `npm test`.
+5. All test results will be displayed directly in the terminal.
+6. A summary of passed/failed suites and individual tests is shown at the end.
 
 ### The Tests:
 
@@ -173,24 +180,31 @@ e. Open your terminal (Command Prompt on Windows).
 f. Run "node -v", you should see v##.##.# depending on your version.
 g. Run "npm -v", you should see v##.##.# depending on your version.
 
-### Running the Tests
+### RUNNING THE TESTS:
 
-#### Installation
+#### The main method for running these tests is using the given executable file depending on your operating system:
 
-```bash
-cd backend # Into this folder
-npm install # To install necessary modules
-```
+##### WINDOWS:
 
-#### Run Jest
+1. Go to the "backend" folder inside the "unitTests" folder and run the file `start` or `start.bat` to start the tests, the results will be shown in the termial.
 
-```bash
-cd backend # Into this folder
-npm test # To run all unit tests
-```
+##### MAC/LINUX:
+
+2. Go to the "backend" folder inside the "unitTests" folder and run the file `start.command` to start the tests, the results will be shown in the termial.
+
+##### RESULTS:
 
 - All test results will be displayed directly in the terminal.
 - A summary of passed/failed suites and individual tests is shown at the end.
+
+#### ALTERNATIVELY: If these files do not work, it can be done the manual way:
+
+1. Open a new terminal.
+2. Navigate to the "backend" folder inside the "unitTests" folder in your terminal using the `cd` command.
+3. Run `npm install`. You might see some warnings, but it should not be a problem as long as the installation finishes.
+4. Run `npm test`.
+5. All test results will be displayed directly in the terminal.
+6. A summary of passed/failed suites and individual tests is shown at the end.
 
 ### The Tests:
 

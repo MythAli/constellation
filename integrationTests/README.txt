@@ -14,7 +14,7 @@ To run this project locally, you must have the following installed:
 
 1. **Node.js** (v16 or higher)
 
-- In addition, you must ensure both the **Node.js backend server** and **React development server** are running.
+- **IMPORTANT** you must ensure both the **Node.js backend server** and **React development server** are running.
 
 ### Node Setup (If you already have Node.js installed, skip this step)
 
@@ -27,25 +27,37 @@ e. Open your terminal (Command Prompt on Windows).
 f. Run "node -v", you should see v##.##.# depending on your version.
 g. Run "npm -v", you should see v##.##.# depending on your version.
 
-### Running the Tests
+### RUNNING THE TESTS:
 
-#### Installation
+#### The main method for running these tests is using the given executable file depending on your operating system (NOTE: ensure both the Node.js backend server and React development server are running):
 
-```bash
-cd frontend # Into this folder
-npm install # To install necessary modules
-```
+##### WINDOWS:
 
-#### Open Cypress
+1. Go to the "frontend" folder inside the "integrationTests" folder and run the file `start` or `start.bat` to start the tests, the results will be shown in the termial.
 
-```bash
-cd frontend # Into this folder
-npm run cypress:open # To start cypress
-```
+##### MAC/LINUX:
 
+2. Go to the "frontend" folder inside the "integrationTests" folder and run the file `start.command` to start the tests, the results will be shown in the termial.
+
+##### USAGE:
+
+- If the file works properly a terminal should launch, and that terminal should launch Cypress (NOTE: The terminal must be kept open).
+- A Cypress popup window will appear.
 - Now select E2E testing, and choose your prferred browser.
 - In the left pannel select "Specs".
 - Now you see the tests, select any one of them to run the testing.
+
+#### ALTERNATIVELY: If these files do not work, it can be done the manual way:
+
+1. Open a new terminal.
+2. Navigate to the "frontend" folder inside the "integrationTests" folder in your terminal using the `cd` command.
+3. Run `npm install`. You might see some warnings, but it should not be a problem as long as the installation finishes.
+4. Run `npm run cypress:open`.
+5. If the command works properly the terminal should launch Cypress (NOTE: The terminal must be kept open).
+6. A Cypress popup window will appear.
+7. Now select E2E testing, and choose your prferred browser.
+8. In the left pannel select "Specs".
+9. Now you see the tests, select any one of them to run the testing.
 
 ### The tests:
 
@@ -202,14 +214,11 @@ b. Select your operating system and download the installer.
 c. Open the installer and follow the default installation steps.
 d. Launch Postman and create a free account or skip sign-in.
 
-### Running the Tests
+### RUNNING THE TESTS:
 
 #### Step 1 — Start the backend server
 
-```bash
-cd backend # Into the backend folder
-npm start # Start the backend server
-```
+1. Whether through the start file or manually, make sure the backend server is running in a terminal.
 
 Make sure the server is running at `http://127.0.0.1:8080` before proceeding.
 

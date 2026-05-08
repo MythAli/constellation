@@ -11,13 +11,13 @@ To run this project locally, you must have the following installed:
 ## Node Setup (If you already have Node.js installed, skip this step)
 
 Follow these steps to install Node.js
-a. Go to the node.js website [nodejs.org] (https://nodejs.org/en/download).
-b. Keep the LTS version selected.
-c. Depending on your opearting system, press on the installer link below to download.
-d. Open the installation file and keep eveything default.
-e. Open your terminal (Command Prompt on Windows).
-f. Run "node -v", you should see v##.##.# depending on your version.
-g. Run "npm -v", you should see v##.##.# depending on your version.
+1. Go to the node.js website [nodejs.org] (https://nodejs.org/en/download).
+2. Keep the LTS version selected.
+3. Depending on your opearting system, press on the installer link below to download.
+4. Open the installation file and keep eveything default.
+5. Open your terminal (Command Prompt on Windows).
+6. Run `node -v`, you should see v##.##.# depending on your version.
+7. Run `npm -v`, you should see v##.##.# depending on your version.
 
 ## RUNNING APPLICATION:
 
@@ -25,8 +25,8 @@ g. Run "npm -v", you should see v##.##.# depending on your version.
 
 #### WINDOWS:
 
-1. Run the file `install.bat` to install all the application dependencies.
-2. Run the file `start.bat` to start the application (Runs backend -> then frotend).
+1. Run the file `install` or `install.bat` to install all the application dependencies.
+2. Run the file `start` or `start.bat` to start the application (Runs backend -> then frotend).
 3. Keep these terminals open to keep the the application running.
 
 #### MAC/LINUX:
@@ -39,19 +39,19 @@ g. Run "npm -v", you should see v##.##.# depending on your version.
 
 #### Run Backend Server - (FIRST) (Skip if executable files worked)
 
-    a. Navigate to the "backend" folder in your terminal.
-    b. Run "npm install". It should add packages without any errors.
-    c. Run "npm start", you should see "Server running at port http://localhost:8080". Now your backend server is up and running.
-    d. Keep the terminal open to keep the backend running.
+1. Navigate to the "backend" folder in your terminal.
+2. Run `npm install`. It should add packages without any errors.
+3. Run `npm start`, you should see "Server running at port http://localhost:8080". Now your backend server is up and running.
+4. Keep the terminal open to keep the backend running.
 
 #### Run Frontend (Main Application) - (SECOND) (Skip if executable files worked)
 
-    a. Open a new terminal.
-    b. Navigate to the "frontend" folder in your terminal.
-    c. Run "npm install". It should add packages without any errors.
-    d. Run "npm run start", you will see multiple prompts. As long as you see "Compiled successfully!", you should be good.
-    e. It should automatically open the website for you. If it does not, go to your browser and paste in "http://localhost:3000".
-    f. Keep the terminal open to keep the website running.
+1. Open a new terminal.
+2. Navigate to the "frontend" folder in your terminal.
+3. Run `npm install`. It should add packages without any errors.
+4. Run `npm run start`, you will see multiple prompts. As long as you see "Compiled successfully!", you should be good.
+5. It should automatically open the website for you. If it does not, go to your browser and paste in "http://localhost:3000".
+6. Keep the terminal open to keep the website running.
 
 ## Usage
 

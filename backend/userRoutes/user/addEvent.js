@@ -72,8 +72,6 @@ const addEventHandler = async (req, res) => {
   }
 };
 
-module.exports = addEventHandler;
-
 // THE REQUEST DATA VALIDATION FUNCTION
 const validateEventData = (data) => {
   const {
@@ -115,3 +113,6 @@ const validateEventData = (data) => {
 
   return errors;
 };
+
+module.exports = addEventHandler;
+module.exports.validateEventData = validateEventData;

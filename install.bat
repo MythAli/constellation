@@ -14,5 +14,8 @@ echo Installing Unit Tests...
 cd unitTests\frontend && call npm install && cd ..\..
 cd unitTests\backend && call npm install && cd ..\..
 
+echo Installing Integration Tests...
+cd integrationTests\frontend && call npm install && cd ..\..
+
 echo All dependencies installed successfully.
 pause
