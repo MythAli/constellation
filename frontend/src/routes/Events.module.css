@@ -1,0 +1,38 @@
+.title {
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 4rem;
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.events .event {
+  width: 50%;
+}
+
+.attend_div {
+  width: 20%;
+  min-width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.attend_div .attend_fill {
+  cursor: pointer;
+  transition: transform 100ms;
+}
+
+.attend_div .attend_fill {
+  fill: rgb(98, 58, 227);
+}
+
+.attend_div .attend_fill:hover {
+  transform: scale(1.1);
+}

@@ -1,0 +1,54 @@
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0%;
+  height: 10rem;
+  /* margin: 0 10% 3rem 10%; */
+  text-align: center;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  border-bottom: 2px solid rgb(236, 225, 250);
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 10;
+}
+.header p {
+  z-index: 10;
+}
+
+.header p .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: rgb(169, 144, 251);
+  color: rgb(42, 38, 48);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 100ms;
+}
+
+/* .button svg {
+  margin: 0;
+  padding: 0;
+} */
+
+.header p .button:hover {
+  background-color: rgb(140, 108, 247);
+}
+
+.header .home {
+  margin: 0 3rem;
+  transform: translateY(-10%);
+  cursor: pointer;
+  transition: transform 100ms;
+}
+
+.header .home:hover {
+  transform: translateY(-10%) scale(1.1);
+}

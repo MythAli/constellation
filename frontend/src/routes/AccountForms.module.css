@@ -1,0 +1,160 @@
+.forms {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  border-radius: 3%;
+}
+
+.forms .login_form {
+  position: relative;
+  background-color: white;
+  padding: 3rem;
+  width: 40rem;
+  font-size: 1.5rem;
+  color: black;
+  border-right: 1px dashed black;
+}
+
+.forms .login_form .title {
+  font-size: 3rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  width: 80%;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.forms .login_form .icon {
+  display: flex;
+  justify-content: center;
+}
+
+.forms .login_form .icon .icon_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  background-color: rgb(230, 222, 246);
+  border-radius: 50%;
+  color: rgb(169, 144, 251);
+}
+
+.forms .login_form .input_div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem;
+}
+
+.forms .login_form label {
+  font-weight: bold;
+  width: 25%;
+  flex-shrink: 0;
+}
+
+.forms .login_form .input_container {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+/* Highlight the input box red on error */
+.forms .login_form .input_container input.input_error {
+  border: 1px solid #ff4d4d;
+}
+
+.forms .login_form .input_container input,
+.forms .login_form .input_container input:focus {
+  width: 70%;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgb(230, 222, 246);
+  outline: none;
+  background-color: rgb(230, 222, 246);
+  color: black;
+  transition: border 0.2s;
+}
+
+/* .forms .login_form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(98, 51, 185);
+} */
+
+.forms .login_form .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.forms .login_form .actions .login {
+  cursor: pointer;
+  font: inherit;
+  padding: 1.5rem 2.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(169, 144, 251);
+  color: black;
+  width: 30%;
+  transition: background-color 100ms;
+}
+
+.forms .login_form .actions .login {
+  /* font-size: 1.6rem; */
+  background-color: rgb(149, 124, 231);
+}
+
+.forms .login_form .actions .cancel {
+  background-color: transparent;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  width: 15%;
+  transition:
+    color 100ms,
+    transform 100ms;
+}
+
+.forms .login_form .actions .cancel:hover {
+  transform: scale(1.05);
+  color: rgb(0, 0, 0);
+}
+
+.sign_up_div {
+  position: relative;
+  min-height: 100%;
+  width: 40rem;
+  background-color: white;
+}
+
+.sign_up_div .sign_up {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+  cursor: pointer;
+  font: inherit;
+  font-size: 2rem;
+  padding: 1.5rem 2.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(169, 144, 251);
+  color: black;
+  width: 60%;
+  transition: background-color 100ms;
+}
+
+.sign_up_div .sign_up:hover {
+  /* font-size: 1.6rem; */
+  background-color: rgb(149, 124, 231);
+}

@@ -1,0 +1,388 @@
+.form {
+  display: flex;
+}
+
+.form .edit_button {
+  cursor: pointer;
+  position: absolute;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  transition:
+    transform 100ms,
+    color 100ms;
+}
+
+.form .edit_button:hover {
+  transform: scale(1.1);
+  color: rgb(98, 58, 227);
+}
+
+.left {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left .club_name_div {
+  position: relative;
+  width: 100%;
+}
+
+.left .club_name_div .club_name {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  border: none;
+  outline: none;
+  text-align: center;
+  resize: none;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 72%;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.left .club_name_div .edit_club_name {
+  right: 75px;
+}
+
+.left .club_name_div .char_count {
+  position: absolute;
+  max-width: 7rem;
+  right: calc(-7rem + 125px);
+  top: 50px;
+}
+
+.left .image_div {
+  position: relative;
+  height: var(--image-width);
+  margin-bottom: 2rem;
+}
+.left .image_div .image_container {
+  position: relative;
+  border-radius: 1rem;
+}
+
+.left .image_div .image_container .edit_image {
+  bottom: 10px;
+  right: 10px;
+}
+
+.left .image_div .image_container .edit_image svg {
+  stroke: rgb(169, 144, 251);
+  transition: stroke 100ms;
+}
+
+.left .image_div .image_container .edit_image svg:hover {
+  stroke: rgb(98, 58, 227);
+}
+
+.left .image_div .image_container img {
+  width: var(--image-width);
+  height: var(--image-width);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px;
+}
+
+.left .image_div .update_btn {
+  width: 7rem;
+  height: 7rem;
+  font-size: 2rem;
+  position: absolute;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  top: calc((var(--image-width) / 2) - 3.5rem);
+  left: -12rem;
+  transition:
+    transform 150ms,
+    opacity 150ms;
+}
+
+.left .image_div .update_btn:hover {
+  transform: scale(1.1);
+}
+
+.left .image_div .btn_disabled {
+  background-color: rgb(204, 204, 204) !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none !important; /* Remove any hover lift effects */
+}
+
+.left .image_div .update_btn::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: calc((7rem - 150px) / 2);
+  top: calc((7rem - 150px) / 2);
+  background-color: rgb(255, 165, 0);
+  border-radius: 60px;
+  z-index: -1;
+  transition: background-color 150ms;
+}
+
+.left .image_div .update_btn:hover::before {
+  background-color: rgb(275, 185, 0);
+}
+
+/* Change the background color when disabled */
+.left .image_div .update_btn:disabled::before,
+.left .image_div .update_btn.btn_disabled::before {
+  background-color: rgb(224, 224, 224);
+  cursor: not-allowed;
+}
+
+/* Kill the hover effect when disabled */
+.left .image_div .update_btn:disabled:hover::before,
+.left .image_div .update_btn.btn_disabled:hover::before {
+  background-color: rgb(224, 224, 224);
+}
+
+.left .tags_div {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  min-width: 100%;
+}
+
+.left .tags_div .tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  width: 70%;
+}
+
+.left .tags_div .tags .tag {
+  background-color: rgb(216, 216, 216);
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-weight: 400;
+}
+
+.left .tags_div .tags .tag_pill {
+  padding: 8px 12px;
+  border: 1px solid rgb(230, 222, 246);
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s;
+}
+
+.left .tags_div .tags .tag_pill_active {
+  background-color: rgb(169, 144, 251);
+  color: white;
+  border-color: rgb(169, 144, 251);
+}
+
+.left .tags_div .edit_tags {
+  right: 75px;
+}
+
+.left .contact_email_div,
+.left .officers_div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.left .officers_div {
+  margin-bottom: 0.5rem;
+}
+
+.left .contact_email_div label,
+.left .officers_div label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  align-self: flex-start;
+}
+
+/* .left .contact_email_div .contact_email,
+.left .officers_div .officers {
+  font-size: 1.2rem;
+  color: grey;
+  text-align: center;
+  min-width: 70%;
+  max-width: 70%;
+  overflow-wrap: break-word;
+  word-break: break-all;
+} */
+
+.left .contact_email_div .contact_email,
+.left .officers_div .officers {
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  max-width: 70%;
+  font-family: inherit;
+  resize: none;
+}
+
+.left .contact_email_div .edit_contact_email,
+.left .officers_div .edit_officers {
+  right: 75px;
+  top: -10px;
+}
+
+.left .social_media {
+  position: relative;
+  min-width: 100%;
+}
+
+.left .social_media .social_media_view {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.left .social_media .social_media_view .social {
+  cursor: pointer;
+  fill: rgb(169, 144, 251);
+}
+
+.left .social_media .social_media_view .web {
+  cursor: pointer;
+  stroke: rgb(169, 144, 251);
+}
+
+.left .social_media .social_media_edit {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.left .social_media .social_media_edit div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.left .social_media .social_media_edit div label {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: auto;
+}
+
+.left .social_media .social_media_edit div input {
+  min-width: 100%;
+  max-width: 100%;
+  font: inherit;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgb(230, 222, 246);
+  background-color: rgb(230, 222, 246);
+  outline: none;
+}
+
+.left .social_media .edit_urls {
+  right: 75px;
+  top: 0;
+}
+
+.right {
+  background-color: rgb(245, 242, 254);
+  padding: 1.5rem;
+  margin-right: 2rem;
+  height: 80vh;
+  border-radius: 10px;
+  min-width: 65.75rem;
+}
+
+.right .about_div {
+  position: relative;
+}
+
+.right .about_div .about_title,
+.right .events_title {
+  text-align: start;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.right .about_div .about {
+  text-align: start;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  resize: none;
+}
+
+.right .about_div .edit_about {
+  right: 0;
+  top: 0;
+}
+
+.right .events_div {
+  position: relative;
+  min-width: 100%;
+}
+
+.right .events_div .event {
+  width: 80%;
+}
+
+.delete_div {
+  width: 20%;
+  min-width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.delete_div .delete {
+  cursor: pointer;
+  transition: transform 100ms;
+  z-index: 4;
+}
+
+.delete_div .delete:hover {
+  transform: scale(1.1);
+}
+
+.right .events_div .add_event {
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  z-index: 3;
+  transition: transform 150ms;
+}
+
+.right .events_div .add_event::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: calc((35px - 40px) / 2);
+  top: calc((35px - 40px) / 2);
+  background-color: rgb(118, 78, 247);
+  border-radius: 30px;
+  z-index: -1;
+  transition: background-color 150ms;
+}
+
+.right .events_div .add_event:hover {
+  transform: scale(1.1);
+}
+.right .events_div .add_event:hover::before {
+  background-color: rgb(98, 58, 227);
+}

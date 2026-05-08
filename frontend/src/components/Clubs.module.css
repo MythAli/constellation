@@ -1,0 +1,63 @@
+.images {
+  margin: 120px 0;
+  display: grid;
+  justify-content: center;
+  /* To Create 5 equal columns */
+  grid-template-columns: repeat(5, var(--image-width));
+  gap: 60px;
+}
+
+.show_btns {
+  position: relative;
+  width: 100%;
+  height: 10rem;
+}
+
+.show_btns .show_more,
+.show_btns .show_less {
+  margin: 0 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: rgb(42, 38, 48);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.75rem;
+  text-decoration: none;
+  transition: background-color 100ms;
+}
+
+.show_btns .show_more {
+  position: absolute;
+  top: -1rem;
+  right: 50%;
+  transform: translateX(-10%);
+}
+
+.show_btns .show_less {
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(10%);
+}
+
+.show_btns .show_more::before,
+.show_btns .show_less::before {
+  content: "";
+  width: 9rem;
+  height: 9rem;
+  background-color: rgb(169, 144, 251);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 100px;
+  z-index: -1;
+  cursor: pointer;
+}
+
+.show_btns .show_more:hover::before,
+.show_btns .show_less:hover::before {
+  background-color: rgb(140, 108, 247);
+}

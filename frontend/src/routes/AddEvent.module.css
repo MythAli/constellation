@@ -1,0 +1,122 @@
+.event_form {
+  position: relative;
+  background-color: white;
+  padding: 3rem;
+  width: 40rem;
+  font-size: 1.5rem;
+  color: black;
+  z-index: 12;
+}
+
+.event_form .title {
+  font-size: 3rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  width: 80%;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.event_form .icon {
+  display: flex;
+  justify-content: center;
+}
+
+.event_form .icon .icon_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  background-color: rgb(230, 222, 246);
+  border-radius: 50%;
+  color: rgb(169, 144, 251);
+}
+
+.event_form .input_div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem;
+}
+
+.event_form label {
+  font-weight: bold;
+  width: 25%;
+  flex-shrink: 0;
+}
+
+.event_form .input_container {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+/* Highlight the input box red on error */
+.event_form .input_container input.input_error {
+  border: 1px solid #ff4d4d;
+}
+
+.event_form .input_container input,
+.event_form .input_container input:focus {
+  width: 70%;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgb(230, 222, 246);
+  outline: none;
+  background-color: rgb(230, 222, 246);
+  color: black;
+  transition: border 0.2s;
+  margin-left: 2rem;
+}
+
+/* .event_form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(98, 51, 185);
+} */
+
+.event_form .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.event_form .actions .event {
+  cursor: pointer;
+  font: inherit;
+  padding: 1.5rem 2.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(169, 144, 251);
+  color: black;
+  width: 30%;
+  transition: background-color 100ms;
+}
+
+.event_form .actions .event {
+  /* font-size: 1.6rem; */
+  background-color: rgb(149, 124, 231);
+}
+
+.event_form .actions .cancel {
+  background-color: transparent;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  width: 15%;
+  transition:
+    color 100ms,
+    transform 100ms;
+}
+
+.event_form .actions .cancel:hover {
+  transform: scale(1.05);
+  color: rgb(0, 0, 0);
+}

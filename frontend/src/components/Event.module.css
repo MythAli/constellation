@@ -1,0 +1,48 @@
+.event {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(169, 144, 251);
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: start;
+}
+
+.event .event_title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  border-bottom: 1px dashed black;
+  padding-bottom: 0.5rem;
+}
+
+.event .event_desc {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.event .event_date {
+  font-size: 1.2rem;
+}
+
+.event .attend_div {
+  width: 20%;
+  min-width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.event .attend_div .attend,
+.event .attend_div .attend_fill {
+  cursor: pointer;
+  transition: transform 100ms;
+}
+
+.event .attend_div .attend_fill {
+  fill: rgb(98, 58, 227);
+}
+
+.event .attend_div .attend:hover,
+.event .attend_div .attend_fill:hover {
+  transform: scale(1.1);
+}

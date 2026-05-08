@@ -1,0 +1,132 @@
+.widgets {
+  display: flex;
+  
+}
+
+.widgets .clubs_and_events {
+  max-width: 70%;
+  margin-left: 2rem;
+}
+
+.widgets .clubs_and_events .title {
+  font-size: 2rem;
+}
+
+.widgets .clubs_and_events .images {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin: 1.5rem 0 3rem 0;
+  height: var(--image-width);
+  width: 51.375rem;
+}
+
+.widgets .clubs_and_events .images .image {
+  height: var(--image-width);
+}
+
+.widgets .clubs_and_events .images .image img {
+  width: var(--image-width);
+  height: var(--image-width);
+  border-radius: 1rem;
+}
+
+.show_all {
+  display: flex;
+  align-items: center;
+}
+
+.show_all p {
+  font-size: 1.5rem;
+}
+
+.show_all {
+  transition: transform 100ms;
+}
+
+.show_all:hover {
+  transform: scale(1.1);
+}
+
+.widgets .clubs_and_events {
+  min-width: 60%;
+}
+
+.widgets .clubs_and_events .upcoming_events {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3rem;
+}
+
+.widgets .clubs_and_events .upcoming_events .left {
+  max-width: 75%;
+  min-width: 75%;
+}
+
+.widgets .calendar_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.widgets .calendar_div .upload_schedule,
+.widgets .calendar_div .view_events {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  outline: none;
+  border: none;
+  border-radius: 16px;
+  padding: 0.8rem 2.5rem;
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 100ms;
+  margin-top: 1rem;
+}
+
+.widgets .calendar_div .upload_schedule {
+  background-color: rgb(230, 222, 246);
+}
+
+.widgets .calendar_div .upload_schedule:hover {
+  background-color: rgb(217, 211, 233);
+}
+
+.widgets .calendar_div .view_events {
+  background-color: rgb(58, 216, 58);
+}
+
+.widgets .calendar_div .view_events:hover {
+  background-color: rgb(78, 236, 78);
+}
+
+.widgets .calendar_div .icon {
+  margin-right: 1rem;
+}
+/* 
+.event {
+  min-width: 80%;
+  max-width: 80%;
+} */
+
+.attend_div {
+  width: 20%;
+  min-width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.attend_div .attend_fill {
+  cursor: pointer;
+  transition: transform 100ms;
+}
+
+.attend_div .attend_fill {
+  fill: rgb(98, 58, 227);
+}
+
+.attend_div .attend_fill:hover {
+  transform: scale(1.1);
+}

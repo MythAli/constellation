@@ -1,0 +1,122 @@
+.sign_up_form {
+  position: relative;
+  background-color: white;
+  padding: 3rem;
+  width: 40rem;
+  border-radius: 3%;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.sign_up_form .title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  width: 80%;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sign_up_form .icon {
+  display: flex;
+  justify-content: center;
+}
+
+.sign_up_form .icon .icon_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  background-color: rgb(230, 222, 246);
+  border-radius: 50%;
+  color: rgb(169, 144, 251);
+}
+
+.sign_up_form .input_div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem;
+}
+
+.sign_up_form .input_container {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.sign_up_form label {
+  font-weight: bold;
+  width: 30%;
+  flex-shrink: 0;
+}
+
+/* Highlight the input box red on error */
+.sign_up_form .input_container input.input_error {
+  border: 1px solid #ff4d4d;
+}
+
+.sign_up_form .input_container input,
+.sign_up_form .input_container input:focus {
+  width: 70%;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgb(230, 222, 246);
+  outline: none;
+  background-color: rgb(230, 222, 246);
+  color: black;
+  transition: border 0.2s;
+}
+
+/* .sign_up_form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(98, 51, 185);
+} */
+
+.sign_up_form .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.sign_up_form .actions button {
+  cursor: pointer;
+  font: inherit;
+  padding: 1.5rem 2.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(169, 144, 251);
+  color: black;
+  width: 33%;
+  transition: background-color 100ms;
+}
+
+.sign_up_form .actions button:hover {
+  /* font-size: 1.6rem; */
+  background-color: rgb(149, 124, 231);
+}
+
+.sign_up_form .actions a {
+  background-color: transparent;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  width: 15%;
+  transition:
+    color 100ms,
+    transform 100ms;
+}
+
+.sign_up_form .actions a:hover {
+  transform: scale(1.05);
+  color: rgb(0, 0, 0);
+}

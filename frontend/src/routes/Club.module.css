@@ -1,0 +1,143 @@
+.main {
+  display: flex;
+}
+
+.left {
+  width: 70%;
+}
+
+.left .club_name {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.left .image {
+  height: var(--image-width);
+  margin-bottom: 1rem;
+}
+
+.left .image img {
+  width: var(--image-width);
+  height: var(--image-width);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px;
+}
+
+.left .follow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  background-color: rgb(169, 144, 251);
+  color: rgb(42, 38, 48);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 100ms;
+}
+
+.left .follow:hover {
+  background-color: rgb(140, 108, 247);
+}
+
+.left .tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 70%;
+  /* left: 50%; */
+  margin: auto;
+  margin-bottom: 1.5rem;
+}
+
+.left .tags .tag {
+  background-color: rgb(216, 216, 216);
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.left .contact,
+.left .officers {
+  font-size: 1.2rem;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 1.5rem;
+}
+
+.left .contact span,
+.left .officers .officer_title {
+  font-weight: bold;
+}
+
+.left .social_media {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.left .social_media .social {
+  cursor: pointer;
+  fill: rgb(169, 144, 251);
+}
+
+.left .social_media .web {
+  cursor: pointer;
+  stroke: rgb(169, 144, 251);
+}
+
+.right {
+  background-color: rgb(245, 242, 254);
+  padding: 1.5rem;
+  margin-right: 2rem;
+  height: 80vh;
+  border-radius: 10px;
+  min-width: 65.75rem;
+}
+
+.right .about_title,
+.right .events_title {
+  text-align: start;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.right .about {
+  text-align: start;
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.right .event {
+  width: 80%;
+}
+
+.attend_div {
+  width: 20%;
+  min-width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.attend_div .attend,
+.attend_div .attend_fill {
+  cursor: pointer;
+  transition: transform 100ms;
+}
+
+.attend_div .attend_fill {
+  fill: rgb(98, 58, 227);
+}
+
+.attend_div .attend:hover,
+.attend_div .attend_fill:hover {
+  transform: scale(1.1);
+}

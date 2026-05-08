@@ -1,0 +1,160 @@
+.sign_up_form {
+  position: relative;
+  background-color: white;
+  padding: 3rem;
+  width: 55rem; /* Slightly wider for longer club descriptions */
+  border-radius: 3%;
+  font-size: 1.2rem;
+  color: black;
+  margin: 2rem auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: black;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.icon_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  background-color: rgb(230, 222, 246);
+  border-radius: 50%;
+  color: rgb(169, 144, 251);
+}
+
+.input_div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 1.5rem 2rem;
+}
+
+.input_div label {
+  font-weight: bold;
+  width: 30%;
+  margin-top: 0.5rem;
+}
+
+.input_div .input_container {
+  min-width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.sign_up_form .input_div .input_container input,
+.sign_up_form .input_div .input_container textarea,
+.sign_up_form .input_div .input_container .multi_select,
+.sign_up_form .input_div .input_container input:focus,
+.sign_up_form .input_div .input_container textarea:focus,
+.sign_up_form .input_div .input_container .multi_select:focus {
+  width: 65%;
+  font: inherit;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgb(230, 222, 246);
+  background-color: rgb(230, 222, 246);
+  outline: none;
+}
+
+.sign_up_form .input_div .upload_button {
+  font-size: 1.25rem;
+  margin-right: auto;
+  border-radius: 6px;
+  outline: none;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 0.75rem 2.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(169, 144, 251);
+  color: black;
+  transition: background-color 100ms;
+}
+
+.sign_up_form .input_div .upload_button:hover {
+  /* font-size: 1.6rem; */
+  background-color: rgb(149, 124, 231);
+}
+
+.sign_up_form .input_div .preview_container {
+  max-width: 10rem;
+  max-height: 10rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: red;
+}
+
+.sign_up_form .input_div .preview_container img {
+  width: 10rem;
+  height: 10rem;
+  margin-left: 2rem;
+}
+
+.sign_up_form .input_div .input_container .input_error {
+  border: 1px solid red;
+}
+
+.input_div .input_container .multi_select {
+  height: 100px; /* Gives room for multiple tags */
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.actions a {
+  text-decoration: none;
+  color: #444;
+  padding: 0.75rem 1.5rem;
+}
+
+.actions button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.75rem 2.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(169, 144, 251);
+  color: black;
+  transition: background-color 100ms;
+}
+
+.actions button:hover {
+  /* font-size: 1.6rem; */
+  background-color: rgb(149, 124, 231);
+}
+
+.actions a {
+  background-color: transparent;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  transition:
+    color 100ms,
+    transform 100ms;
+}
+
+.actions a:hover {
+  transform: scale(1.05);
+  color: rgb(0, 0, 0);
+}
+
+.span {
+  font-weight: lighter;
+  font-size: 0.8rem;
+}

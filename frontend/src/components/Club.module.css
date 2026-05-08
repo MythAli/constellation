@@ -1,0 +1,50 @@
+.image_div {
+  width: var(--image-width);
+}
+
+.image_div:hover .caption {
+  background-color: rgb(0, 0, 0);
+}
+
+.image_div .image {
+  height: var(--image-width);
+}
+
+.image_div .image img {
+  width: var(--image-width);
+  height: var(--image-width);
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+.image_div .caption {
+  background-color: rgb(23, 23, 23);
+  height: 15rem;
+  padding: 1rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  transition: background-color 100ms;
+}
+
+.image_div .caption p {
+  text-align: start;
+}
+
+.image_div .caption .title {
+  font-size: 20px;
+  color: white;
+}
+
+.image_div .caption .body {
+  /* Limit to a specific number of lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 8; /* Change this number to fit the card exactly */
+  -webkit-box-orient: vertical;
+
+  /* Hide the overflow */
+  overflow: hidden;
+
+  /* Ensure text wraps properly */
+  word-break: break-word;
+  color: rgb(147, 160, 183);
+}

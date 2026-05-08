@@ -1,0 +1,1475 @@
+{
+  "info": {
+    "_postman_id": "de099f5a-aa32-45b0-9ff2-40085f6f4ab8",
+    "name": "Constellation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth — Login",
+      "item": [
+        {
+          "name": "Login — Valid (Student)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns accessToken', () => pm.expect(pm.response.json()).to.have.property('accessToken'));",
+                  "pm.test('Returns refreshToken', () => pm.expect(pm.response.json()).to.have.property('refreshToken'));",
+                  "pm.test('Returns userType', () => pm.expect(pm.response.json()).to.have.property('userType'));",
+                  "const json = pm.response.json();",
+                  "if (json.accessToken) pm.environment.set('studentToken', json.accessToken);",
+                  "if (json.refreshToken) pm.environment.set('studentRefreshToken', json.refreshToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"email\": \"james.smith61@utdallas.edu\",\n  \"password\": \"password12345\",\n  \"type\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login — Valid (Club)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns accessToken', () => pm.expect(pm.response.json()).to.have.property('accessToken'));",
+                  "const json = pm.response.json();",
+                  "if (json.accessToken) pm.environment.set('clubToken', json.accessToken);",
+                  "if (json.refreshToken) pm.environment.set('clubRefreshToken', json.refreshToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"email\": \"the.dialogue.society@utdallas.edu\",\n  \"password\": \"Password123!\",\n  \"type\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login — No Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));",
+                  "pm.test('Returns messages array', () => pm.expect(pm.response.json().messages).to.be.an('array').that.is.not.empty);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login — Invalid Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns messages array', () => pm.expect(pm.response.json().messages).to.be.an('array').that.is.not.empty);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"email\": \"notanemail\",\n  \"password\": \"short\",\n  \"type\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth — Register",
+      "item": [
+        {
+          "name": "Register — Valid (Student)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Returns accessToken', () => pm.expect(pm.response.json()).to.have.property('accessToken'));",
+                  "pm.test('Returns success message', () => pm.expect(pm.response.json().message).to.eql('Registration Successful!'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"signup_email\": \"testuser_{{$timestamp}}@utdallas.edu\",\n  \"signup_password\": \"password12345\",\n  \"type\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register — No Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400 or 403', () => pm.expect(pm.response.code).to.be.oneOf([400, 403]));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register — Invalid Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns messages array', () => pm.expect(pm.response.json().messages).to.be.an('array').that.is.not.empty);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"firstName\": \"A\",\n  \"lastName\": \"B\",\n  \"signup_email\": \"notanemail\",\n  \"signup_password\": \"short\",\n  \"type\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register — Duplicate Email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 409', () => pm.response.to.have.status(409));",
+                  "pm.test('Returns conflict error', () => pm.expect(pm.response.json().error).to.include('Conflict'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"firstName\": \"James\",\n  \"lastName\": \"Smith\",\n  \"signup_email\": \"james.smith61@utdallas.edu\",\n  \"signup_password\": \"password12345\",\n  \"type\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "register"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth — Refresh",
+      "item": [
+        {
+          "name": "Refresh — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns new accessToken', () => pm.expect(pm.response.json()).to.have.property('accessToken'));",
+                  "pm.test('Returns userType', () => pm.expect(pm.response.json()).to.have.property('userType'));",
+                  "const json = pm.response.json();",
+                  "if (json.accessToken) pm.environment.set('studentToken', json.accessToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"token\": \"{{studentRefreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "refresh"]
+            }
+          }
+        },
+        {
+          "name": "Refresh — No Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "refresh"]
+            }
+          }
+        },
+        {
+          "name": "Refresh — Invalid Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"token\": \"this.is.not.a.valid.token\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "refresh"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Verify",
+      "item": [
+        {
+          "name": "Verify — Valid (Student)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('authenticated is true', () => pm.expect(pm.response.json().authenticated).to.be.true);",
+                  "pm.test('Returns name', () => pm.expect(pm.response.json()).to.have.property('name'));",
+                  "pm.test('Returns userType', () => pm.expect(pm.response.json()).to.have.property('userType'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "verify"]
+            }
+          }
+        },
+        {
+          "name": "Verify — Valid (Club)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('authenticated is true', () => pm.expect(pm.response.json().authenticated).to.be.true);",
+                  "pm.test('Returns clubId', () => pm.expect(pm.response.json()).to.have.property('clubId'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "verify"]
+            }
+          }
+        },
+        {
+          "name": "Verify — No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "verify"]
+            }
+          }
+        },
+        {
+          "name": "Verify — Invalid Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400 or 403', () => pm.expect(pm.response.code).to.be.oneOf([400, 403]));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer this.is.not.valid" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "verify"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Profile — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns first_name', () => pm.expect(pm.response.json()).to.have.property('first_name'));",
+                  "pm.test('Returns favorites array', () => pm.expect(pm.response.json().favorites).to.be.an('array'));",
+                  "pm.test('Returns attending array', () => pm.expect(pm.response.json().attending).to.be.an('array'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Profile — No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Profile — Wrong Role (Club Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Change Schedule",
+      "item": [
+        {
+          "name": "Change Schedule — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns success message', () => pm.expect(pm.response.json().message).to.eql('Schedule updated!'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"calendar_start\": \"2026-08-20T08:00:00.000Z\",\n  \"calendar_end\": \"2026-08-28T08:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/schedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "schedule"]
+            }
+          }
+        },
+        {
+          "name": "Change Schedule — No Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns messages array', () => pm.expect(pm.response.json().messages).to.be.an('array').that.is.not.empty);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/schedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "schedule"]
+            }
+          }
+        },
+        {
+          "name": "Change Schedule — Invalid Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns messages array', () => pm.expect(pm.response.json().messages).to.be.an('array').that.is.not.empty);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"calendar_start\": \"not-a-date\",\n  \"calendar_end\": \"also-not-a-date\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/schedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "schedule"]
+            }
+          }
+        },
+        {
+          "name": "Change Schedule — No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"calendar_start\": \"2026-08-20T08:00:00.000Z\",\n  \"calendar_end\": \"2026-08-28T08:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/schedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "schedule"]
+            }
+          }
+        },
+        {
+          "name": "Change Schedule — Wrong Role (Club Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"calendar_start\": \"2026-08-20T08:00:00.000Z\",\n  \"calendar_end\": \"2026-08-28T08:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/schedule",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "schedule"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Match Events",
+      "item": [
+        {
+          "name": "Match Events — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns events array', () => pm.expect(pm.response.json().events).to.be.an('array'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"start\": \"2026-10-25T00:00:00.000Z\",\n  \"end\": \"2026-11-29T00:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/matching-events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "matching-events"]
+            }
+          }
+        },
+        {
+          "name": "Match Events — No Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns messages array', () => pm.expect(pm.response.json().messages).to.be.an('array').that.is.not.empty);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/matching-events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "matching-events"]
+            }
+          }
+        },
+        {
+          "name": "Match Events — Invalid Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns messages array', () => pm.expect(pm.response.json().messages).to.be.an('array').that.is.not.empty);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"start\": \"not-a-date\",\n  \"end\": \"also-not-a-date\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/matching-events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "matching-events"]
+            }
+          }
+        },
+        {
+          "name": "Match Events — No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"start\": \"2026-10-25T00:00:00.000Z\",\n  \"end\": \"2026-11-29T00:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/matching-events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "matching-events"]
+            }
+          }
+        },
+        {
+          "name": "Match Events — Wrong Role (Club Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"start\": \"2026-10-25T00:00:00.000Z\",\n  \"end\": \"2026-11-29T00:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/matching-events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "matching-events"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Toggle Favorite Club",
+      "item": [
+        {
+          "name": "Toggle Favorite — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200 or 201', () => pm.expect(pm.response.code).to.be.oneOf([200, 201]));",
+                  "pm.test('Returns status field', () => pm.expect(pm.response.json()).to.have.property('status'));",
+                  "pm.test('Status is added or removed', () => pm.expect(pm.response.json().status).to.be.oneOf(['added','removed']));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/toggleFavorite/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "toggleFavorite", "1"]
+            }
+          }
+        },
+        {
+          "name": "Toggle Favorite — No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/toggleFavorite/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "toggleFavorite", "1"]
+            }
+          }
+        },
+        {
+          "name": "Toggle Favorite — Wrong Role (Club Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/toggleFavorite/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "toggleFavorite", "1"]
+            }
+          }
+        },
+        {
+          "name": "Toggle Favorite — Invalid ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400 or 404', () => pm.expect(pm.response.code).to.be.oneOf([400, 404]));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/toggleFavorite/notanid",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "toggleFavorite", "notanid"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Add Event",
+      "item": [
+        {
+          "name": "Add Event — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Returns success message', () => pm.expect(pm.response.json().message).to.eql('Event created successfully'));",
+                  "pm.test('Returns event id', () => pm.expect(pm.response.json()).to.have.property('id'));",
+                  "const json = pm.response.json();",
+                  "if (json.id) pm.environment.set('testEventId', json.id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"club_id\": \"1\",\n  \"event_title\": \"Annual Hackathon\",\n  \"description\": \"A full day of coding, collaboration, and creativity for all UTD students.\",\n  \"start_time\": \"2026-10-20T08:00:00.000Z\",\n  \"end_time\": \"2026-10-20T18:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/addEvent",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "addEvent"]
+            }
+          }
+        },
+        {
+          "name": "Add Event — No Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400 or 403', () => pm.expect(pm.response.code).to.be.oneOf([400, 403]));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/addEvent",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "addEvent"]
+            }
+          }
+        },
+        {
+          "name": "Add Event — Invalid Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400', () => pm.response.to.have.status(400));",
+                  "pm.test('Returns messages array', () => pm.expect(pm.response.json().messages).to.be.an('array').that.is.not.empty);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"club_id\": \"1\",\n  \"event_title\": \"Hi\",\n  \"description\": \"Too short\",\n  \"start_time\": \"not-a-date\",\n  \"end_time\": \"not-a-date\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/addEvent",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "addEvent"]
+            }
+          }
+        },
+        {
+          "name": "Add Event — No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"club_id\": \"1\",\n  \"event_title\": \"Annual Hackathon\",\n  \"description\": \"A full day of coding, collaboration, and creativity for all UTD students.\",\n  \"start_time\": \"2026-10-20T08:00:00.000Z\",\n  \"end_time\": \"2026-10-20T18:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/addEvent",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "addEvent"]
+            }
+          }
+        },
+        {
+          "name": "Add Event — Wrong Role (Student Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"club_id\": \"1\",\n  \"event_title\": \"Annual Hackathon\",\n  \"description\": \"A full day of coding, collaboration, and creativity for all UTD students.\",\n  \"start_time\": \"2026-10-20T08:00:00.000Z\",\n  \"end_time\": \"2026-10-20T18:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/addEvent",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "addEvent"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Toggle Event Attendance",
+      "item": [
+        {
+          "name": "Toggle Event — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200 or 201', () => pm.expect(pm.response.code).to.be.oneOf([200, 201]));",
+                  "pm.test('Returns status field', () => pm.expect(pm.response.json()).to.have.property('status'));",
+                  "pm.test('Status is added or removed', () => pm.expect(pm.response.json().status).to.be.oneOf(['added','removed']));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/toggleEvent/{{testEventId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "toggleEvent", "{{testEventId}}"]
+            }
+          }
+        },
+        {
+          "name": "Toggle Event — No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/toggleEvent/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "toggleEvent", "1"]
+            }
+          }
+        },
+        {
+          "name": "Toggle Event — Wrong Role (Club Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/toggleEvent/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "toggleEvent", "1"]
+            }
+          }
+        },
+        {
+          "name": "Toggle Event — Invalid ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 400 or 404', () => pm.expect(pm.response.code).to.be.oneOf([400, 404]));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/toggleEvent/notanid",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "toggleEvent", "notanid"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Delete Event",
+      "item": [
+        {
+          "name": "Delete Event — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns success message', () => pm.expect(pm.response.json().message).to.eql('Event deleted successfully.'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/{{testEventId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "{{testEventId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Event — No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Event — Wrong Role (Student Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{studentToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Event — Not Owner",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 403', () => pm.response.to.have.status(403));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{clubToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/user/events/9999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "user", "events", "9999"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fetch Clubs (Public)",
+      "item": [
+        {
+          "name": "Fetch Clubs — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns clubs array', () => pm.expect(pm.response.json().clubs).to.be.an('array'));",
+                  "pm.test('Clubs array is not empty', () => pm.expect(pm.response.json().clubs).to.have.length.above(0));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/clubs",
+              "host": ["{{baseUrl}}"],
+              "path": ["clubs"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fetch Club (Public)",
+      "item": [
+        {
+          "name": "Fetch Club — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns club name', () => pm.expect(pm.response.json()).to.have.property('name'));",
+                  "pm.test('Returns events array', () => pm.expect(pm.response.json().events).to.be.an('array'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/clubs/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["clubs", "1"]
+            }
+          }
+        },
+        {
+          "name": "Fetch Club — Not Found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 404', () => pm.response.to.have.status(404));",
+                  "pm.test('Returns error field', () => pm.expect(pm.response.json()).to.have.property('error'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/clubs/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["clubs", "99999"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fetch Tags (Public)",
+      "item": [
+        {
+          "name": "Fetch Tags — Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns tags array', () => pm.expect(pm.response.json().tags).to.be.an('array'));",
+                  "pm.test('Tags array is not empty', () => pm.expect(pm.response.json().tags).to.have.length.above(0));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/clubs/tags",
+              "host": ["{{baseUrl}}"],
+              "path": ["clubs", "tags"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
