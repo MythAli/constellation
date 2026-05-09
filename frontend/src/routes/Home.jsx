@@ -66,7 +66,7 @@ const Home = () => {
       <main>
         <p className={classes.p1}>for utd clubs</p>
         <p className={classes.p2}>CONSTELLATION</p>
-        <p className={classes.p3}>find your sport among the stars</p>
+        <p className={classes.p3}>find your spot among the stars</p>
         <Form className={classes.form}>
           <button>
             <RxHamburgerMenu size={20} className={classes.icon_left} />
